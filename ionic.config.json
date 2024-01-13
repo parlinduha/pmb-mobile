@@ -1,0 +1,13 @@
+{
+  "name": "pmb-mobile",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "https://pmb-mobile-backend.vercel.app/api/"
+    }
+  ]
+}
