@@ -1,3 +1,4 @@
+import { EditUserComponent } from './edit-user/edit-user.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -15,6 +16,6 @@ import { UserPage } from './user.page';
     IonicModule,
     UserPageRoutingModule
   ],
-  declarations: [UserPage]
+  declarations: [UserPage, EditUserComponent]
 })
 export class UserPageModule {}

@@ -1,13 +1,14 @@
 <ion-header [translucent]="true">
   <ion-toolbar class="ion-margin-top" mode="ios">
-    <ion-searchbar></ion-searchbar>
+    <ion-searchbar (ionInput)="searchStudents($event)"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-list>
-    <ion-list>
-      <ion-item *ngFor="let student of students">
+  <ion-title class="ion-margin-top">Data Mahasiswa Baru</ion-title>
+  <ion-list [inset]="true" mode="ios">
+    <ion-item-sliding *ngFor="let student of filteredStudents">
+      <ion-item [button]="true">
         <ion-avatar aria-hidden="true" slot="start">
           <img
             alt=""
@@ -16,6 +17,27 @@
         </ion-avatar>
         <ion-label>{{ student.name }}</ion-label>
       </ion-item>
-    </ion-list>
+      <ion-item-options slot="end">
+        <ion-item-option color="warning">
+          <ion-icon
+            name="create-outline"
+            (click)="editStudent()"
+          ></ion-icon>
+        </ion-item-option>
+        <ion-item-option color="tertiary">
+          <ion-icon
+            name="ellipsis-horizontal-circle-outline"
+            (click)="viewStudentDetail(student)"
+          >
+          </ion-icon>
+        </ion-item-option>
+        <ion-item-option color="danger" expandable="true">
+          <ion-icon
+            name="trash-outline"
+            (click)="deleteStudent(student)"
+          ></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 </ion-content>
