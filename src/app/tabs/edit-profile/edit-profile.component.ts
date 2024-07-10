@@ -23,7 +23,7 @@ export class EditProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.formGroup = new FormGroup<any>({
+    this.formGroup = new FormGroup({
       name: new FormControl(this.activeUser.name, {
         updateOn: 'change',
         validators: [Validators.required],
@@ -33,6 +33,29 @@ export class EditProfileComponent implements OnInit {
         validators: [Validators.required],
       }),
       avatar: new FormControl(this.activeUser.avatar, {
+        updateOn: 'change',
+      }),
+      bornDate: new FormControl(this.activeUser.bornDate, {
+        updateOn: 'change',
+      }),
+      email: new FormControl(this.activeUser.email, {
+        updateOn: 'change',
+        validators: [Validators.email],
+      }),
+      genderOption: new FormControl(this.activeUser.genderOption, {
+        updateOn: 'change',
+      }),
+      password: new FormControl(this.activeUser.password, {
+        updateOn: 'change',
+        validators: [Validators.required, Validators.minLength(8)],
+      }),
+      religionOption: new FormControl(this.activeUser.religionOption, {
+        updateOn: 'change',
+      }),
+      whatsappNumber: new FormControl(this.activeUser.whatsappNumber, {
+        updateOn: 'change',
+      }),
+      workStatus: new FormControl(this.activeUser.workStatus, {
         updateOn: 'change',
       }),
     });
@@ -68,7 +91,14 @@ export class EditProfileComponent implements OnInit {
       ...this.activeUser,
       name: this.formGroup.value.name,
       homeAddress: this.formGroup.value.homeAddress,
-      avatar: this.url || '',
+      avatar: this.url || this.formGroup.value.avatar || '',
+      bornDate: this.formGroup.value.bornDate,
+      email: this.formGroup.value.email,
+      genderOption: this.formGroup.value.genderOption,
+      password: this.formGroup.value.password,
+      religionOption: this.formGroup.value.religionOption,
+      whatsappNumber: this.formGroup.value.whatsappNumber,
+      workStatus: this.formGroup.value.workStatus,
     };
 
     this.studentsService.studentUpdate(user);

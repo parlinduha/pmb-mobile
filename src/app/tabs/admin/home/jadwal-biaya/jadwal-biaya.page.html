@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/admin/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>jadwal dan biaya</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-item>
+    <ion-input [(ngModel)]="newSchedule" placeholder="New Schedule"></ion-input>
+    <ion-input [(ngModel)]="newFee" placeholder="New Fee"></ion-input>
+    <ion-button (click)="addItem()">Add</ion-button>
+  </ion-item>
+
+  <ion-item *ngIf="editIndex !== null">
+    <ion-input [(ngModel)]="editSchedule" placeholder="Edit Schedule"></ion-input>
+    <ion-input [(ngModel)]="editFee" placeholder="Edit Fee"></ion-input>
+    <ion-button (click)="updateItem()">Update</ion-button>
+  </ion-item>
+  <ion-list>
+    <ion-item *ngFor="let item of scheduleFees; let i = index">
+      <ion-label>
+        <h2>{{ item.schedule }}</h2>
+        <p>{{ item.fee }}</p>
+      </ion-label>
+      <ion-buttons slot="end">
+        <ion-button color="primary" (click)="editItem(i)">Edit</ion-button>
+        <ion-button color="danger" (click)="deleteItem(i)">Delete</ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+
+
+</ion-content>

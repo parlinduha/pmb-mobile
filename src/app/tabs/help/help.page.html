@@ -1,13 +1,19 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" mode="ios">
   <ion-toolbar>
-    <ion-title>help</ion-title>
+    <ion-title>Bantuan</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">help</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div *ngFor="let faq of faqs; let i = index" class="grid grid-cols-1 gap-1 mx-2 my-2">
+    <ion-item class="rounded-md bg-sky-400">
+      <ion-label class="text-sm font-semibold text-blue-800">{{ faq.question }}</ion-label>
+      <ion-button fill="clear" slot="end" (click)="toggleCollapse(i)">
+        <ion-icon [name]="isCollapsed(i) ? 'chevron-down' : 'chevron-up'"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <div [hidden]="isCollapsed(i)" class="p-2 text-xs text-justify text-blue-800 rounded-md bg-sky-100">
+      {{ faq.answer }}
+    </div>
+  </div>
 </ion-content>

@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: InfoPage
+  },  {
+    path: 'info-detail',
+    loadChildren: () => import('./info-detail/info-detail.module').then( m => m.InfoDetailPageModule)
   }
+
 ];
 
 @NgModule({

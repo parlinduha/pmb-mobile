@@ -1,0 +1,32 @@
+{
+  "students": [
+    {
+      "email": "student1@example.com",
+      "name": "Student 1",
+      "workStatus": "",
+      "bornDate": "",
+      "genderOption": "",
+      "religionOption": "",
+      "whatsappNumber": "",
+      "homeAddress": "",
+      "isRegister": false,
+      "avatar": "",
+      "password": "password1",
+      "role": "student"
+    },
+    {
+      "email": "student2@example.com",
+      "name": "Student 2",
+      "workStatus": "",
+      "bornDate": "",
+      "genderOption": "",
+      "religionOption": "",
+      "whatsappNumber": "",
+      "homeAddress": "",
+      "isRegister": false,
+      "avatar": "",
+      "password": "password2",
+      "role": "student"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+<ion-header [translucent]="true">
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/admin/info"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add Info</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="p-4">
+  <ion-item class="my-2 rounded-lg shadow-md">
+    <ion-label position="floating">Title</ion-label>
+    <ion-input [(ngModel)]="info.title"></ion-input>
+  </ion-item>
+  <ion-item class="my-2 rounded-lg shadow-md">
+    <ion-label position="floating">Description</ion-label>
+    <ion-textarea [(ngModel)]="info.description"></ion-textarea>
+  </ion-item>
+  <ion-item class="my-2 rounded-lg shadow-md">
+    <ion-label position="floating">Date</ion-label>
+    <ion-datetime display-format="MM/DD/YYYY" [(ngModel)]="info.date"></ion-datetime>
+  </ion-item>
+  <ion-button expand="full" class="mt-4 text-white bg-blue-500" (click)="saveInfo()">Save</ion-button>
+</ion-content>

@@ -6,7 +6,23 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage,
+  },  {
+    path: 'perkuliahan',
+    loadChildren: () => import('./perkuliahan/perkuliahan.module').then( m => m.PerkuliahanPageModule)
+  },
+  {
+    path: 'jadwal-biaya',
+    loadChildren: () => import('./jadwal-biaya/jadwal-biaya.module').then( m => m.JadwalBiayaPageModule)
+  },
+  {
+    path: 'prosedur',
+    loadChildren: () => import('./prosedur/prosedur.module').then( m => m.ProsedurPageModule)
+  },
+  {
+    path: 'persyaratan',
+    loadChildren: () => import('./persyaratan/persyaratan.module').then( m => m.PersyaratanPageModule)
   }
+
 ];
 
 @NgModule({

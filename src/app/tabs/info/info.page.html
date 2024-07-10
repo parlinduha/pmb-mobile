@@ -1,13 +1,98 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" mode="ios">
   <ion-toolbar>
     <ion-title>info</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">info</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="grid grid-cols-1 gap-1 mx-2 mt-4 mb-4">
+    <div id="bg-card" class="flex flex-col p-2 rounded-md bg-sky-400">
+      <span class="text-sm font-semibold text-blue-800">Pendaftaran Mahasiswa Baru 2024</span>
+      <span class="justify-center text-xs font-thin text-justify text-blue-800">Proses pendaftaran mahasiswa baru untuk
+        tahun akademik 2024 kini dibuka! Segera daftarkan diri Anda untuk bergabung dengan institusi pendidikan
+        terkemuka di Indonesia.</span>
+      <span class="justify-center text-xs font-bold text-justify text-blue-800"(click)="navigate_to_info_detail()">Read more...</span>
+    </div>
+  </div>
+  <div class="grid grid-cols-1 gap-1 mx-2 mt-4 mb-4">
+    <div id="bg-card" class="flex flex-col p-2 rounded-md bg-sky-400">
+      <span class="text-sm font-semibold text-blue-800">Beasiswa Pendaftaran Mahasiswa Baru</span>
+      <span class="justify-center text-xs font-thin text-justify text-blue-800">Jangan lewatkan kesempatan untuk
+        mendapatkan beasiswa penuh bagi mahasiswa baru yang berprestasi. Daftarkan segera dan raih masa depan cemerlang
+        bersama kami.</span>
+      <span class="justify-center text-xs font-bold text-justify text-blue-800" (click)="navigate_to_info_detail()">Read more...</span>
+    </div>
+  </div>
+  <div class="grid grid-cols-1 gap-1 mx-2 mt-4 mb-4">
+    <div id="bg-card" class="flex flex-col p-2 rounded-md bg-sky-400">
+      <span class="text-sm font-semibold text-blue-800">Prosedur Pendaftaran Online Mahasiswa Baru</span>
+      <span class="justify-center text-xs font-thin text-justify text-blue-800">Pendaftaran mahasiswa baru kini lebih
+        mudah dengan sistem online. Ikuti langkah-langkah pendaftaran yang sederhana dan cepat melalui portal resmi
+        kami.</span>
+      <span class="justify-center text-xs font-bold text-justify text-blue-800"(click)="navigate_to_info_detail()">Read more...</span>
+    </div>
+  </div>
+  <div class="grid grid-cols-1 gap-1 mx-2 mt-4 mb-4">
+    <div id="bg-card" class="flex flex-col p-2 rounded-md bg-sky-400">
+      <span class="text-sm font-semibold text-blue-800">Jadwal Pendaftaran Mahasiswa Baru</span>
+      <span class="justify-center text-xs font-thin text-justify text-blue-800">Ketahui jadwal penting pendaftaran
+        mahasiswa baru tahun akademik 2024. Jangan sampai ketinggalan informasi penting untuk memastikan Anda terdaftar
+        tepat waktu.</span>
+      <span class="justify-center text-xs font-bold text-justify text-blue-800"(click)="navigate_to_info_detail()">Read more...</span>
+    </div>
+  </div>
+  <div class="grid grid-cols-1 gap-1 mx-2 mt-4 mb-4">
+    <div id="bg-card" class="flex flex-col p-2 rounded-md bg-sky-400">
+      <span class="text-sm font-semibold text-blue-800">Persyaratan Pendaftaran Mahasiswa Baru</span>
+      <span class="justify-center text-xs font-thin text-justify text-blue-800">Pelajari persyaratan yang diperlukan
+        untuk pendaftaran mahasiswa baru. Pastikan Anda memenuhi semua kriteria agar proses pendaftaran berjalan
+        lancar.</span>
+      <span class="justify-center text-xs font-bold text-justify text-blue-800"(click)="navigate_to_info_detail()">Read more...</span>
+    </div>
+  </div>
+  <div class="grid grid-cols-1 gap-1 mx-2 mt-4 mb-4">
+    <div id="bg-card" class="flex flex-col p-2 rounded-md bg-sky-400">
+      <span class="text-sm font-semibold text-blue-800">Fasilitas Kampus bagi Mahasiswa Baru</span>
+      <span class="justify-center text-xs font-thin text-justify text-blue-800">Temukan berbagai fasilitas modern dan
+        lengkap yang tersedia bagi mahasiswa baru. Dukung proses belajar Anda dengan lingkungan yang kondusif dan sarana
+        yang memadai.</span>
+      <span class="justify-center text-xs font-bold text-justify text-blue-800"(click)="navigate_to_info_detail()">Read more...</span>
+    </div>
+  </div>
+  <div class="grid grid-cols-1 gap-1 mx-2 mt-4 mb-4">
+    <div id="bg-card" class="flex flex-col p-2 rounded-md bg-sky-400">
+      <span class="text-sm font-semibold text-blue-800">Program Studi Pilihan bagi Mahasiswa Baru</span>
+      <span class="justify-center text-xs font-thin text-justify text-blue-800">Kami menawarkan berbagai program studi
+        unggulan yang dapat dipilih oleh mahasiswa baru. Sesuaikan pilihan program studi dengan minat dan bakat Anda
+        untuk meraih sukses.</span>
+      <span class="justify-center text-xs font-bold text-justify text-blue-800"(click)="navigate_to_info_detail()">Read more...</span>
+    </div>
+  </div>
+  <div class="grid grid-cols-1 gap-1 mx-2 mt-4 mb-4">
+    <div id="bg-card" class="flex flex-col p-2 rounded-md bg-sky-400">
+      <span class="text-sm font-semibold text-blue-800">Kegiatan Orientasi Mahasiswa Baru</span>
+      <span class="justify-center text-xs font-thin text-justify text-blue-800">Ikuti kegiatan orientasi mahasiswa baru
+        untuk mengenal lebih dekat lingkungan kampus dan teman-teman baru. Kegiatan ini akan membantu Anda beradaptasi
+        dengan kehidupan kampus.</span>
+      <span class="justify-center text-xs font-bold text-justify text-blue-800"(click)="navigate_to_info_detail()">Read more...</span>
+    </div>
+  </div>
+  <div class="grid grid-cols-1 gap-1 mx-2 mt-4 mb-4">
+    <div id="bg-card" class="flex flex-col p-2 rounded-md bg-sky-400">
+      <span class="text-sm font-semibold text-blue-800">Tips Sukses Menghadapi Pendaftaran Mahasiswa Baru</span>
+      <span class="justify-center text-xs font-thin text-justify text-blue-800">Simak tips sukses dari para alumni untuk
+        menghadapi pendaftaran mahasiswa baru. Persiapkan diri Anda dengan baik dan raih kesuksesan di dunia
+        akademik.</span>
+      <span class="justify-center text-xs font-bold text-justify text-blue-800"(click)="navigate_to_info_detail()">Read more...</span>
+    </div>
+  </div>
+  <div class="grid grid-cols-1 gap-1 mx-2 mt-4 mb-4">
+    <div id="bg-card" class="flex flex-col p-2 rounded-md bg-sky-400">
+      <span class="text-sm font-semibold text-blue-800">Dukungan dan Layanan bagi Mahasiswa Baru</span>
+      <span class="justify-center text-xs font-thin text-justify text-blue-800">Kami menyediakan berbagai dukungan dan
+        layanan untuk membantu mahasiswa baru dalam proses pendaftaran hingga masa studi. Manfaatkan layanan ini untuk
+        pengalaman belajar yang optimal.</span>
+      <span class="justify-center text-xs font-bold text-justify text-blue-800"(click)="navigate_to_info_detail()">Read more...</span>
+    </div>
+  </div>
 </ion-content>

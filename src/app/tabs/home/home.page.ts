@@ -13,5 +13,6 @@ export class HomePage {
 
   ionViewWillEnter() {
     this.students = this.studentsService.getStudents();
+    console.log(' students', this.students[0].name);
   }
 }

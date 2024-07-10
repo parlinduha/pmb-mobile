@@ -1,5 +1,5 @@
 <ion-tabs (ionTabsDidChange)="setSelectedTab()" id="main-content">
-  <ion-tab-bar slot="bottom">
+  <ion-tab-bar slot="bottom" >
     <ng-container *ngIf="userRole === 'student'; else adminTabs">
       <ion-tab-button tab="home">
         <ion-icon
@@ -15,13 +15,13 @@
         ></ion-icon>
         <ion-label color="tertiary">Info</ion-label>
       </ion-tab-button>
-      <ion-tab-button tab="registration-form-student">
-        <ion-icon
-          [name]="selectedTab === 'registration-form-student' ? 'mail-open' : 'mail-open-outline'"
-          color="tertiary"
-        ></ion-icon>
-        <ion-label color="tertiary">Pendaftaran</ion-label>
-      </ion-tab-button>
+        <ion-tab-button tab="registration-form-student">
+          <ion-icon
+            [name]="selectedTab === 'registration-form-student' ? 'mail-open' : 'mail-open-outline'"
+            color="tertiary"
+          ></ion-icon>
+          <ion-label color="tertiary">Pendaftaran</ion-label>
+        </ion-tab-button>
       <ion-tab-button tab="help">
         <ion-icon
           [name]="selectedTab === 'help' ? 'help-circle' : 'help-circle-outline'"
@@ -39,34 +39,35 @@
     </ng-container>
 
     <ng-template #adminTabs>
-      <ion-tab-button tab="admin/home">
-        <ion-icon
-          [name]="selectedTab === 'home' ? 'home' : 'home-outline'"
-          color="tertiary"
-        ></ion-icon>
-        <ion-label color="tertiary">Home</ion-label>
-      </ion-tab-button>
-      <ion-tab-button tab="admin/user">
-        <ion-icon
-          [name]="selectedTab === 'user' ? 'person' : 'person-outline'"
-          color="tertiary"
-        ></ion-icon>
-        <ion-label color="tertiary">Maba</ion-label>
-      </ion-tab-button>
-      <ion-tab-button tab="admin/info">
-        <ion-icon
-          [name]="selectedTab === 'info' ? 'information-circle' : 'information-circle-outline'"
-          color="tertiary"
-        ></ion-icon>
-        <ion-label color="tertiary">Info</ion-label>
-      </ion-tab-button>
-      <ion-tab-button tab="admin/profile">
-        <ion-icon
-          [name]="selectedTab === 'profile' ? 'person' : 'person-outline'"
-          color="tertiary"
-        ></ion-icon>
-        <ion-label color="tertiary">Profile</ion-label>
-      </ion-tab-button>
-    </ng-template>
+  <ion-tab-button tab="admin/home" [class.selected]="selectedTab === 'home'">
+    <ion-icon
+      [name]="selectedTab === 'home' ? 'home' : 'home-outline'"
+      color="tertiary"
+    ></ion-icon>
+    <ion-label color="tertiary">Home</ion-label>
+  </ion-tab-button>
+  <ion-tab-button tab="admin/user" [class.selected]="selectedTab === 'user'">
+    <ion-icon
+      [name]="selectedTab === 'user' ? 'person' : 'person-outline'"
+      color="tertiary"
+    ></ion-icon>
+    <ion-label color="tertiary">Maba</ion-label>
+  </ion-tab-button>
+  <ion-tab-button tab="admin/info" [class.selected]="selectedTab === 'info'">
+    <ion-icon
+      [name]="selectedTab === 'info' ? 'information-circle' : 'information-circle-outline'"
+      color="tertiary"
+    ></ion-icon>
+    <ion-label color="tertiary">Info</ion-label>
+  </ion-tab-button>
+  <ion-tab-button tab="admin/profile" [class.selected]="selectedTab === 'profile'">
+    <ion-icon
+      [name]="selectedTab === 'profile' ? 'person' : 'person-outline'"
+      color="tertiary"
+    ></ion-icon>
+    <ion-label color="tertiary">Profile</ion-label>
+  </ion-tab-button>
+</ng-template>
+
   </ion-tab-bar>
 </ion-tabs>

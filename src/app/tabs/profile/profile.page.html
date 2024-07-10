@@ -1,4 +1,4 @@
-<ion-toolbar>
+<!-- <ion-toolbar>
   <ion-buttons slot="primary">
     <ion-button (click)="onEditProfile()" fill="none">
       Edit
@@ -27,4 +27,68 @@
   <div class="ion-text-center">
     <ion-chip color="danger" (click)="onLogout()">Logout</ion-chip>
   </div>
+</ion-content> -->
+<ion-content>
+    <div id="header" class="flex flex-col px-4 bg-[#1e67a8] rounded-br-[120px]  pt-16">
+      <div class="flex flex-row items-center gap-2">
+        <ng-container *ngIf="activeUser.avatar; else defaultIcon">
+         <div class="p-1 bg-white border rounded-full">
+          <img src="{{ activeUser.avatar }}" class="w-20 h-20 rounded-full">
+         </div>
+        </ng-container>
+        <ng-template #defaultIcon>
+          <ion-icon name="person" class="w-20 h-20" size="large"></ion-icon>
+        </ng-template>
+        <span class="text-3xl font-semibold text-blue-800">{{ activeUser.name }}</span>
+      </div>
+      <div class="flex items-center justify-between w-1/2 px-2 my-2 bg-blue-300 rounded-xl" (click)="onEditProfile()" fill="none" >
+        <span class="text-sm font-semibold text-blue-800">Edit</span>
+        <ion-icon name="chevron-forward" slot="end"></ion-icon>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 gap-6 p-2 mx-2 mt-4 mb-4 rounded-md bg-sky-400 ">
+      <div id="bg-card" class="flex flex-row items-center justify-between ">
+        <span class="text-sm font-semibold text-blue-800">Nama Lengkap</span>
+        <span class="justify-center text-xs font-thin text-justify text-blue-800">{{activeUser.name ? activeUser.name : 'Null'}} </span>
+      </div>
+<div id="bg-card" class="flex flex-row items-center justify-between ">
+  <span class="text-sm font-semibold text-blue-800">Tanggal Lahir</span>
+  <span class="justify-center text-xs font-thin text-justify text-blue-800">{{activeUser.bornDate ?
+    activeUser.bornDate : 'null'}}
+  </span>
+</div>
+      <div id="bg-card" class="flex flex-row items-center justify-between ">
+        <span class="text-sm font-semibold text-blue-800">Alamat</span>
+        <span class="justify-center text-xs font-thin text-justify text-blue-800">
+          {{activeUser.homeAddress ? activeUser.homeAddress : 'Null' }}</span>
+      </div>
+      <div id="bg-card" class="flex flex-row items-center justify-between ">
+        <span class="text-sm font-semibold text-blue-800">Jenis Kelamin</span>
+        <span class="justify-center text-xs font-thin text-justify text-blue-800">{{activeUser.genderOption ? activeUser.genderOption : 'null'}}
+          </span>
+      </div>
+      <div id="bg-card" class="flex flex-row items-center justify-between ">
+        <span class="text-sm font-semibold text-blue-800">Agama</span>
+        <span class="justify-center text-xs font-thin text-justify text-blue-800">{{activeUser.religionOption ?
+          activeUser.religionOption : 'null'}}
+        </span>
+      </div>
+      <div id="bg-card" class="flex flex-row items-center justify-between ">
+        <span class="text-sm font-semibold text-blue-800">Whatsapp</span>
+        <span class="justify-center text-xs font-thin text-justify text-blue-800">{{activeUser.whatsappNumber ?
+          activeUser.whatsappNumber : 'null'}}
+        </span>
+      </div>
+      <div id="bg-card" class="flex flex-row items-center justify-between ">
+        <span class="text-sm font-semibold text-blue-800">Pekerjaan</span>
+        <span class="justify-center text-xs font-thin text-justify text-blue-800">{{activeUser.workStatus ?
+          activeUser.workStatus : 'null'}}
+        </span>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 gap-1 mx-2 mt-4 mb-4"  (click)="onLogout()">
+      <div id="bg-card" class="flex flex-row items-center justify-center p-2 bg-red-400 rounded-md">
+        <span class="text-sm font-semibold text-center text-blue-200">Logout</span>
+      </div>
+    </div>
 </ion-content>

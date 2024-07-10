@@ -1,7 +1,7 @@
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { StudentService } from './../../../service/student/student.service';
+import { StudentService } from '../../../service/student/student.service';
 import { ModalController } from '@ionic/angular';
 
 @Component({
@@ -25,12 +25,16 @@ export class UserPage implements OnInit {
 
   getStudentsData() {
     this.studentService.getStudents().subscribe(
-      (data: any[]) => {
-        console.log(data);
-        this.students = data;
-        this.filteredStudents = [...data];
+      (response: any) => {
+        if (response.success) {
+          console.log(response.data);
+          this.students = response.data.map((student:any) => ({ ...student, expanded: false }));
+          this.filteredStudents = [...this.students];
+        } else {
+          console.error('Error: Data not found');
+        }
       },
-      (error) => {
+      (error:any) => {
         console.error('Error fetching students data:', error);
       }
     );
@@ -47,34 +51,38 @@ export class UserPage implements OnInit {
     });
   }
 
-  editStudent() {
+  toggleStudentDetail(student: any) {
+    student.expanded = !student.expanded;
+  }
+
+  editStudent(student: any) {
     this.modalCtrl
       .create({
         component: EditUserComponent,
+        componentProps: { student }
       })
       .then((modalEl) => {
         modalEl.present();
       });
   }
 
-  deleteStudent(student: any) {
-    const confirmDelete = window.confirm(
-      `Apakah Anda yakin ingin menghapus ${student.name}?`
-    );
+  // deleteStudent(student: any) {
+  //   const confirmDelete = window.confirm(
+  //     `Apakah Anda yakin ingin menghapus ${student.name}?`
+  //   );
 
-    if (confirmDelete) {
-      // Panggil fungsi dari service atau metode yang sesuai
-      this.studentService.getStudentById(student.id).subscribe(
-        () => {
-          // Refresh data setelah penghapusan
-          this.getStudentsData();
-        },
-        (error) => {
-          console.error('Error deleting student:', error);
-        }
-      );
-    }
-  }
+  //   if (confirmDelete) {
+  //     this.studentService.deleteStudentByEmail(student.email).subscribe(
+  //       () => {
+  //         // Refresh data setelah penghapusan
+  //         this.getStudentsData();
+  //       },
+  //       (error:any) => {
+  //         console.error('Error deleting student:', error);
+  //       }
+  //     );
+  //   }
+  // }
 
   viewStudentDetail(student: any) {
     // Menghubungkan ke halaman detail dengan menyertakan ID mahasiswa

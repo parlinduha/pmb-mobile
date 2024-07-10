@@ -1,5 +1,7 @@
-import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { EditProfileComponent } from '../../edit-profile/edit-profile.component';
+import { Router } from '@angular/router'; // Import Router
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +9,35 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-  constructor(private router: Router) {}
+ activeUser: any;
+
+  constructor(
+    private modalCtrl: ModalController,
+    private router: Router // Inject Router
+  ) {
+    const localStorages = localStorage.getItem('userActive');
+    this.activeUser = localStorages ? JSON.parse(localStorages) : {};
+  }
 
   ngOnInit() {}
+
+  onEditProfile() {
+    this.modalCtrl
+      .create({
+        component: EditProfileComponent,
+      })
+      .then((modalEl) => {
+        modalEl.present();
+      });
+  }
+
+  handleRefresh(event: any) {
+    setTimeout(() => {
+      const localStorages = localStorage.getItem('userActive');
+      this.activeUser = localStorages ? JSON.parse(localStorages) : {};
+      event.target.complete();
+    }, 2000);
+  }
 
   onLogout() {
     // Lakukan logout dan arahkan ke halaman login

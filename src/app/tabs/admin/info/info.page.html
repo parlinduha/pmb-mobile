@@ -1,13 +1,30 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>info</ion-title>
+<ion-header class="bg-blue-500">
+  <ion-toolbar mode="ios">
+    <ion-title class="text-black">Info</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="addInfo()">
+        <ion-icon slot="icon-only" name="add-outline" class="text-black"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">info</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let info of infos" class="my-2 rounded-lg shadow-md">
+      <ion-label class="block p-4">
+        <h2 class="text-lg font-bold">{{ info.title }}</h2>
+        <p class="text-gray-600">{{ info.description }}</p>
+        <p class="text-sm text-gray-400">{{ info.date }}</p>
+      </ion-label>
+      <ion-buttons slot="end">
+        <ion-button (click)="editInfo(info.id)">
+          <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+        </ion-button>
+        <ion-button (click)="deleteInfo(info.id)">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
 </ion-content>

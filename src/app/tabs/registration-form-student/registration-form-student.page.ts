@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoadingController, ToastController } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StudentsService } from '../../students.service';
 
 @Component({
@@ -9,126 +9,93 @@ import { StudentsService } from '../../students.service';
   styleUrls: ['./registration-form-student.page.scss'],
 })
 export class RegistrationFormStudentPage implements OnInit {
-  isLoading = false;
-  isRegister: boolean;
-  formGroup: FormGroup;
-  activeUser: any;
-  isModalOpen = false;
+  registrationForm: FormGroup;
+  majorOptions = [
+    { value: 'TI', display: 'Teknik Informatika' },
+    { value: 'SI', display: 'Sistem Informasi' },
+  ];
+  genderOptions = [
+    { value: 'Laki-laki', display: 'Laki-laki' },
+    { value: 'Perempuan', display: 'Perempuan' },
+  ];
+  religionOptions = [
+    { value: 'Islam', display: 'Islam' },
+    { value: 'Kristen', display: 'Kristen' },
+    { value: 'Katolik', display: 'Katolik' },
+    { value: 'Hindu', display: 'Hindu' },
+    { value: 'Buddha', display: 'Buddha' },
+    { value: 'Konghucu', display: 'Konghucu' },
+  ];
 
   constructor(
-    private loadingCtrl: LoadingController,
-    private toastCtrl: ToastController,
-    private studentService: StudentsService
+    private formBuilder: FormBuilder,
+    private navCtrl: NavController,
+    private registrationService: StudentsService
   ) {
-    const localStorages = localStorage.getItem('userActive');
-    this.activeUser = localStorages ? JSON.parse(localStorages) : {};
-    this.isRegister = this.activeUser.isRegister;
-  }
-
-  ngOnInit() {
-    this.formGroup = new FormGroup<any>({
-      name: new FormControl(this.activeUser.name, {
-        updateOn: 'change',
-        validators: [Validators.required],
-      }),
-      workStatus: new FormControl(null, {
-        updateOn: 'change',
-        validators: [Validators.required],
-      }),
-      bornDate: new FormControl(null, {
-        updateOn: 'change',
-        validators: [Validators.required],
-      }),
-      genderOption: new FormControl(null, {
-        updateOn: 'change',
-        validators: [Validators.required],
-      }),
-      religionOption: new FormControl(null, {
-        updateOn: 'change',
-        validators: [Validators.required],
-      }),
-      whatsappNumber: new FormControl(null, {
-        updateOn: 'change',
-        validators: [Validators.required],
-      }),
-      homeAddress: new FormControl(null, {
-        updateOn: 'change',
-        validators: [Validators.required],
-      }),
+    this.registrationForm = this.formBuilder.group({
+      major1: ['', Validators.required],
+      major2: [''],
+      wavePeriod: ['', Validators.required],
+      class: ['', Validators.required],
+      fullName: ['', Validators.required],
+      gender: ['', Validators.required],
+      birthPlace: ['', Validators.required],
+      birthDate: ['', Validators.required],
+      homePhoneAreaCode: [''],
+      homePhoneNumber: [''],
+      mobileNumber: ['', Validators.required],
+      fullAddress: ['', Validators.required],
+      subDistrict: ['', Validators.required],
+      district: ['', Validators.required],
+      city: ['', Validators.required],
+      province: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      graduationYear: [''],
+      diplomaNumber: [''],
+      schoolOrigin: ['', Validators.required],
+      religion: ['', Validators.required],
+      fatherName: ['', Validators.required],
+      fatherAddress: [''],
+      fatherOccupation: ['', Validators.required],
+      fatherMobileNumber: [''],
+      motherName: ['', Validators.required],
+      motherAddress: [''],
+      motherOccupation: ['', Validators.required],
+      motherMobileNumber: [''],
+      paymentProof: [null, Validators.required],
+      captcha: ['', Validators.required],
     });
   }
 
+  ngOnInit() {}
+
   onSubmit() {
-    if (!this.formGroup.valid) {
-      return;
+    if (this.registrationForm.valid) {
+      const formValues = this.registrationForm.value;
+      const files = {
+        skhun: this.registrationForm.get('skhun')?.value,
+        diploma: this.registrationForm.get('diploma')?.value,
+        ktp: this.registrationForm.get('ktp')?.value,
+        kk: this.registrationForm.get('kk')?.value,
+        certificate: this.registrationForm.get('certificate')?.value,
+      };
+      this.registrationService.studentRegisterPmb(formValues, files);
+      console.log('Registration successful', formValues);
+      this.navCtrl.navigateRoot('/home');
+    } else {
+      console.error('Form is invalid');
     }
-    this.isLoading = true;
-    this.loadingCtrl
-      .create({
-        keyboardClose: true,
-        message: 'Registering...',
-      })
-      .then((loadingEl) => {
-        loadingEl.present();
-        setTimeout(() => {
-          let bornDate = new Date(this.formGroup.value.bornDate);
-          let formattedBornDate =
-            ('0' + bornDate.getDate()).slice(-2) +
-            '/' +
-            ('0' + (bornDate.getMonth() + 1)).slice(-2) +
-            '/' +
-            bornDate.getFullYear();
-
-          this.isLoading = false;
-          loadingEl.dismiss();
-          this.isRegister = true;
-
-          const registerData = {
-            ...this.activeUser,
-            name: this.formGroup.value.name,
-            workStatus: this.formGroup.value.workStatus,
-            bornDate: formattedBornDate,
-            genderOption: this.formGroup.value.genderOption,
-            religionOption: this.formGroup.value.religionOption,
-            whatsappNumber: this.formGroup.value.whatsappNumber,
-            homeAddress: this.formGroup.value.homeAddress,
-            isRegister: this.isRegister,
-          };
-          localStorage.setItem('userActive', JSON.stringify(registerData));
-          this.studentService.studentUpdate(registerData);
-
-          const localStorages = localStorage.getItem('userActive');
-          this.activeUser = localStorages ? JSON.parse(localStorages) : {};
-
-          window.open(
-            `mailto:${this.activeUser.email}?subject=Registration Success&body=Hi ${this.activeUser.name},%0D%0A%0D%0AThank you for registering to our school. We will contact you soon.%0D%0A%0D%0ARegards,%0D%0ASchool Admin`,
-            '_system'
-          );
-
-          this.toastCtrl
-            .create({
-              keyboardClose: true,
-              message: 'Register success',
-              position: 'top',
-              duration: 2000,
-              color: 'success',
-            })
-            .then((toastEl) => {
-              toastEl.present();
-            });
-        }, 2000);
-      });
   }
 
-  setOpen(isOpen: boolean) {
-    this.isModalOpen = isOpen;
+
+  // Metode untuk me-reload captcha
+  reloadCaptcha() {
+    // Logika untuk me-reload captcha
+    console.log('Captcha reloaded');
   }
 
-  handleRefresh(event: any) {
-    setTimeout(() => {
-      const localStorages = localStorage.getItem('userActive');
-      this.activeUser = localStorages ? JSON.parse(localStorages) : {};
-      event.target.complete();
-    }, 500);
+  // Metode untuk mencetak formulir
+  printForm() {
+    window.print();
   }
 }

@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/admin/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>persyaratan</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">persyaratan</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list>
+    <ion-item *ngFor="let item of requirements; let i = index">
+      <ion-label>
+        <h2>{{ item.title }}</h2>
+        <p>{{ item.description }}</p>
+      </ion-label>
+      <ion-buttons slot="end">
+        <ion-button color="tertiary" (click)="showDetails(item)">Detail</ion-button>
+        <ion-button color="primary" (click)="editItem(i)">Edit</ion-button>
+        <ion-button color="danger" (click)="deleteItem(i)">Delete</ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+
+  <ion-item>
+    <ion-input [(ngModel)]="newTitle" placeholder="New Title"></ion-input>
+    <ion-input [(ngModel)]="newDescription" placeholder="New Description"></ion-input>
+    <ion-button (click)="addItem()">Add</ion-button>
+  </ion-item>
+
+  <ion-item *ngIf="editIndex !== null">
+    <ion-input [(ngModel)]="editTitle" placeholder="Edit Title"></ion-input>
+    <ion-input [(ngModel)]="editDescription" placeholder="Edit Description"></ion-input>
+    <ion-button (click)="updateItem()">Update</ion-button>
+  </ion-item>
+</ion-content>

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class LoginService {
-  private apiUrl = 'https://pmb-mobile-backend.vercel.app/api/login'; // Update with your login API endpoint
+  private apiUrl = 'https://pmb-mobile-backend.vercel.app/api/register'; // Update with your login API endpoint
 
   constructor(private http: HttpClient) {}
 

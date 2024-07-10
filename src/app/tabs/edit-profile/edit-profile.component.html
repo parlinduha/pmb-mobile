@@ -13,14 +13,44 @@
     <ion-card mode="ios">
       <ion-img [src]="url"></ion-img>
       <ion-card-content>
-        <ion-input errorText="Nama Wajib Diisi" formControlName="name"
-                   label="Nama Lengkap" labelPlacement="stacked" placeholder="Masukan Nama"></ion-input>
+        <ion-input errorText="Nama Wajib Diisi" formControlName="name" label="Nama Lengkap" labelPlacement="stacked"
+          placeholder="Masukan Nama"></ion-input>
 
-        <ion-textarea errorText="Alamat Rumah Wajib Diisi"
-                      formControlName="homeAddress" label="Alamat Rumah"
-                      labelPlacement="stacked" placeholder="Masukan Alamat Rumah"></ion-textarea>
+        <ion-textarea errorText="Alamat Rumah Wajib Diisi" formControlName="homeAddress" label="Alamat Rumah"
+          labelPlacement="stacked" placeholder="Masukan Alamat Rumah"></ion-textarea>
 
         <ion-input (change)="readUrl($event)" formControlName="avatar" type="file"></ion-input>
+
+        <ion-input formControlName="bornDate" label="Tanggal Lahir" labelPlacement="stacked"
+          placeholder="Masukan Tanggal Lahir" type="date"></ion-input>
+
+        <ion-input errorText="Email Tidak Valid" formControlName="email" label="Email" labelPlacement="stacked"
+          placeholder="Masukan Email"></ion-input>
+
+        <ion-select formControlName="genderOption" label="Jenis Kelamin" labelPlacement="stacked"
+          placeholder="Pilih Jenis Kelamin">
+          <ion-select-option value="male">Laki-laki</ion-select-option>
+          <ion-select-option value="female">Perempuan</ion-select-option>
+        </ion-select>
+
+        <ion-input formControlName="password" label="Kata Sandi" labelPlacement="stacked"
+          placeholder="Masukan Kata Sandi" type="password"></ion-input>
+
+        <ion-select formControlName="religionOption" label="Agama" labelPlacement="stacked" placeholder="Pilih Agama">
+          <ion-select-option value="islam">Islam</ion-select-option>
+          <ion-select-option value="christian">Kristen</ion-select-option>
+          <ion-select-option value="catholic">Katolik</ion-select-option>
+          <ion-select-option value="hindu">Hindu</ion-select-option>
+          <ion-select-option value="buddha">Buddha</ion-select-option>
+          <ion-select-option value="other">Lainnya</ion-select-option>
+        </ion-select>
+
+        <ion-input formControlName="whatsappNumber" label="Nomor WhatsApp" labelPlacement="stacked"
+          placeholder="Masukan Nomor WhatsApp" type="tel"></ion-input>
+
+        <ion-input formControlName="workStatus" label="Status Pekerjaan" labelPlacement="stacked"
+          placeholder="Masukan Status Pekerjaan"></ion-input>
+
         <ion-button (click)="onSubmit()" color="tertiary" expand="full" mode="ios" type="submit">Update</ion-button>
       </ion-card-content>
     </ion-card>
