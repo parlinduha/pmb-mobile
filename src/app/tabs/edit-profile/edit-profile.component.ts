@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { StudentsService } from '../../students.service';
+import { JsonFileService } from '../../service/json/json-file.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -16,7 +16,7 @@ export class EditProfileComponent implements OnInit {
 
   constructor(
     private modalCtrl: ModalController,
-    private studentsService: StudentsService
+    private studentsService: JsonFileService
   ) {
     const localStorages = localStorage.getItem('userActive');
     this.activeUser = localStorages ? JSON.parse(localStorages) : {};

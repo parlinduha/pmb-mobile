@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { StudentsService } from '../../students.service';
+import { JsonFileService } from '../../service/json/json-file.service';
 
 @Component({
   selector: 'app-registration-form-student',
@@ -13,6 +13,15 @@ export class RegistrationFormStudentPage implements OnInit {
   majorOptions = [
     { value: 'TI', display: 'Teknik Informatika' },
     { value: 'SI', display: 'Sistem Informasi' },
+  ];
+  gelOptions = [
+    { value: 'gelombang 1', display: 'Gelombang I' },
+    { value: 'gelombang 2', display: 'Gelombang II' },
+  ];
+  classOptions = [
+    { value: 'pagi', display: 'Kelas pagi' },
+    { value: 'malam', display: 'Kelas malam' },
+    { value: 'extension', display: 'Kelas extension' },
   ];
   genderOptions = [
     { value: 'Laki-laki', display: 'Laki-laki' },
@@ -30,7 +39,7 @@ export class RegistrationFormStudentPage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private navCtrl: NavController,
-    private registrationService: StudentsService
+    private registrationService: JsonFileService
   ) {
     this.registrationForm = this.formBuilder.group({
       major1: ['', Validators.required],
@@ -63,39 +72,46 @@ export class RegistrationFormStudentPage implements OnInit {
       motherOccupation: ['', Validators.required],
       motherMobileNumber: [''],
       paymentProof: [null, Validators.required],
-      captcha: ['', Validators.required],
     });
   }
 
-  ngOnInit() {}
-
-  onSubmit() {
-    if (this.registrationForm.valid) {
-      const formValues = this.registrationForm.value;
-      const files = {
-        skhun: this.registrationForm.get('skhun')?.value,
-        diploma: this.registrationForm.get('diploma')?.value,
-        ktp: this.registrationForm.get('ktp')?.value,
-        kk: this.registrationForm.get('kk')?.value,
-        certificate: this.registrationForm.get('certificate')?.value,
-      };
-      this.registrationService.studentRegisterPmb(formValues, files);
-      console.log('Registration successful', formValues);
-      this.navCtrl.navigateRoot('/home');
+  ngOnInit() {
+    const userActive = localStorage.getItem('userActive');
+    if (userActive) {
+      try {
+        const data = JSON.parse(userActive);
+        const email = data.email;
+        this.registrationForm.patchValue({ email: email });
+      } catch (err) {
+        console.error('Error parsing user data from local storage:', err);
+      }
     } else {
-      console.error('Form is invalid');
+      console.error('No user data found in local storage.');
     }
   }
 
-
-  // Metode untuk me-reload captcha
-  reloadCaptcha() {
-    // Logika untuk me-reload captcha
-    console.log('Captcha reloaded');
+ onSubmit() {
+  if (this.registrationForm.valid) {
+    const formValues = this.registrationForm.value;
+    const files = {
+      skhun: this.registrationForm.get('paymentProof')?.value,
+      diploma: null,
+      ktp: null,
+      kk: null,
+      certificate: null,
+    };
+    this.registrationService.studentRegisterPmb(formValues, files).subscribe(
+      (response) => {
+        console.log('Registration successful', response);
+        this.navCtrl.navigateRoot('/tabs/home');
+      },
+      (error) => {
+        console.error('Registration failed', error);
+      }
+    );
+  } else {
+    console.error('Form is invalid');
   }
+}
 
-  // Metode untuk mencetak formulir
-  printForm() {
-    window.print();
-  }
 }
