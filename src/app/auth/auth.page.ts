@@ -82,42 +82,6 @@ export class AuthPage implements OnInit {
     };
   }
 
-  // onLogin() {
-  //   this.loadingCtrl.create({
-  //     mode: 'ios',
-  //     keyboardClose: true,
-  //     message: 'Tunggu...',
-  //     spinner: 'circular',
-  //   }).then((loadingEl) => {
-  //     loadingEl.present();
-
-  //     setTimeout(() => {
-  //       this.isLoading = false;
-  //       const email = this.formGroup.value.email;
-  //       const password = this.formGroup.value.password;
-
-  //       if (email === 'admin@admin.com' && password === 'password') {
-  //         const adminUser = { email: 'admin@admin.com', name: 'Admin', role: 'admin' };
-  //         localStorage.setItem('userActive', JSON.stringify(adminUser));
-  //         this.router.navigateByUrl('/tabs/admin/home');
-  //       } else {
-  //         const student = this.jsonFileService.getStudentByEmail(email);
-  //         if (student) {
-  //           if (student.email === email && student.password === password) {
-  //             localStorage.setItem('userActive', JSON.stringify(student));
-  //             this.router.navigateByUrl('/tabs/home');
-  //           } else {
-  //             this.showToast('Email atau Password Salah.');
-  //           }
-  //         } else {
-  //           this.showToast('Akun Tidak Ditemukan.');
-  //         }
-  //       }
-
-  //       loadingEl.dismiss();
-  //     }, 1500);
-  //   });
-  // }
 
   onLogin() {
   this.loadingCtrl.create({
@@ -137,9 +101,10 @@ export class AuthPage implements OnInit {
         const adminUser = { email: 'admin@admin.com', name: 'Admin', role: 'admin' };
         localStorage.setItem('userActive', JSON.stringify(adminUser));
         this.router.navigateByUrl('/tabs/admin/home');
+          loadingEl.dismiss();
       } else {
         this.jsonFileService.getUsers().subscribe((response:any) => {
-          console.log('API response received:', JSON.stringify(response)); // Log untuk debug
+          // console.log('API response received:', JSON.stringify(response)); // Log untuk debug
           const users = response.data; // Akses array user dari respons
           const user = Array.isArray(users) ? users.find(u => u.email === email && u.password === password) : null;
           console.log('objects users:', JSON.stringify(user));

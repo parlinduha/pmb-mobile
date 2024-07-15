@@ -1,13 +1,27 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>prosedur</ion-title>
+<ion-header class="bg-blue-500">
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="#"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="text-white">Prosedur</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content class="p-4 bg-gray-100">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">prosedur</ion-title>
+      <ion-title size="large" class="text-blue-500">Prosedur</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <div class="p-4 bg-white rounded-lg shadow-md">
+    <h2 class="mb-4 text-xl font-semibold">Langkah-langkah Pendaftaran</h2>
+    <ol class="space-y-2 list-decimal list-inside">
+      <li>Mengisi formulir pendaftaran secara online melalui aplikasi.</li>
+      <li>Mengunggah dokumen-dokumen yang diperlukan seperti KTP, ijazah, dan pas foto.</li>
+      <li>Melakukan pembayaran biaya pendaftaran melalui metode yang tersedia.</li>
+      <li>Menunggu verifikasi dokumen dan pembayaran dari pihak kampus.</li>
+      <li>Menerima konfirmasi penerimaan melalui email atau aplikasi.</li>
+    </ol>
+  </div>
 </ion-content>

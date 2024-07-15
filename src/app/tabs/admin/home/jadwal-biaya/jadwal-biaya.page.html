@@ -9,21 +9,22 @@
 
 <ion-content [fullscreen]="true">
   <ion-item>
-    <ion-input [(ngModel)]="newSchedule" placeholder="New Schedule"></ion-input>
+    <ion-input [(ngModel)]="newTitle" placeholder="New Schedule"></ion-input>
     <ion-input [(ngModel)]="newFee" placeholder="New Fee"></ion-input>
     <ion-button (click)="addItem()">Add</ion-button>
   </ion-item>
 
   <ion-item *ngIf="editIndex !== null">
-    <ion-input [(ngModel)]="editSchedule" placeholder="Edit Schedule"></ion-input>
+    <ion-input [(ngModel)]="editTitle" placeholder="Edit Schedule"></ion-input>
     <ion-input [(ngModel)]="editFee" placeholder="Edit Fee"></ion-input>
     <ion-button (click)="updateItem()">Update</ion-button>
   </ion-item>
+
   <ion-list>
     <ion-item *ngFor="let item of scheduleFees; let i = index">
       <ion-label>
-        <h2>{{ item.schedule }}</h2>
-        <p>{{ item.fee }}</p>
+        <h2>{{ item.title }}</h2>
+        <p>Rp {{ item.fee | number:'1.0-0' }}</p>
       </ion-label>
       <ion-buttons slot="end">
         <ion-button color="primary" (click)="editItem(i)">Edit</ion-button>
@@ -31,6 +32,4 @@
       </ion-buttons>
     </ion-item>
   </ion-list>
-
-
 </ion-content>

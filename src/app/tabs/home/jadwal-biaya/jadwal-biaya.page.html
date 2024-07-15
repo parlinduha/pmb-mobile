@@ -1,13 +1,53 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>jadwal-biaya</ion-title>
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="#"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Jadwal dan Biaya</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">jadwal-biaya</ion-title>
+      <ion-title size="large">Jadwal dan Biaya</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <div class="p-4">
+    <h2 class="mb-4 text-xl font-semibold">Jadwal Penerimaan</h2>
+    <ul class="space-y-2 list-disc list-inside">
+      <li class="text-gray-700">Gelombang 1: 1 Januari 2024 - 31 Maret 2024</li>
+      <li class="text-gray-700">Gelombang 2: 1 April 2024 - 30 Juni 2024</li>
+      <li class="text-gray-700">Gelombang 3: 1 Juli 2024 - 30 September 2024</li>
+    </ul>
+
+    <h2 class="mt-6 mb-4 text-xl font-semibold">Biaya Pendidikan</h2>
+    <table class="min-w-full bg-white border border-gray-300">
+      <thead>
+        <tr class="bg-gray-200">
+          <th class="px-4 py-2 border-b border-gray-300">Jenis Biaya</th>
+          <th class="px-4 py-2 border-b border-gray-300">Nominal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="px-4 py-2 border-b border-gray-300">Uang Pendaftaran</td>
+          <td class="px-4 py-2 border-b border-gray-300">Rp 500.000</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 border-b border-gray-300">Uang Pangkal</td>
+          <td class="px-4 py-2 border-b border-gray-300">Rp 5.000.000</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 border-b border-gray-300">SPP per Semester</td>
+          <td class="px-4 py-2 border-b border-gray-300">Rp 3.000.000</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 border-b border-gray-300">Biaya Lab</td>
+          <td class="px-4 py-2 border-b border-gray-300">Rp 1.000.000</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </ion-content>

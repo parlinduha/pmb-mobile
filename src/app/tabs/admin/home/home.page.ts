@@ -24,4 +24,7 @@ export class HomePage implements OnInit {
     this.router.navigate(['tabs/admin/home/prosedur']);
   }
 
+  navigateInfo() {
+    this.router.navigate(['tabs/admin/info']);
+  }
 }

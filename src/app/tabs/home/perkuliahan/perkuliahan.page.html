@@ -1,13 +1,44 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>perkuliahan</ion-title>
+<ion-header [translucent]="true" class="text-white bg-blue-500">
+  <ion-toolbar mode="ios">
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="#"></ion-back-button>
+      </ion-buttons>
+    <ion-title>Perkuliahan</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="bg-gray-100">
   <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">perkuliahan</ion-title>
+    <ion-toolbar class="text-white bg-blue-500">
+      <ion-title size="large">Perkuliahan</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <div class="p-4">
+    <div class="p-6 mb-4 bg-white rounded-lg shadow-md">
+      <h2 class="mb-2 text-xl font-bold">Informasi Perkuliahan</h2>
+      <p class="mb-4 text-gray-700">
+        Selamat datang di halaman informasi perkuliahan STMIK Widuri. Di sini Anda dapat menemukan semua informasi
+        terkait perkuliahan, jadwal, dan lain-lain.
+      </p>
+      <ul class="pl-5 text-gray-700 list-disc">
+        <li>Jadwal Kuliah</li>
+        <li>Ruang Kuliah</li>
+        <li>Dosen Pengajar</li>
+        <li>Mata Kuliah</li>
+        <li>Peraturan Akademik</li>
+      </ul>
+    </div>
+
+    <div class="p-6 bg-white rounded-lg shadow-md">
+      <h2 class="mb-2 text-xl font-bold">Kontak</h2>
+      <p class="mb-2 text-gray-700">
+        Untuk informasi lebih lanjut, silakan hubungi:
+      </p>
+      <p class="text-gray-700">
+        Email: info@stmik-widuri.ac.id <br>
+        Telepon: (021) 123-4567
+      </p>
+    </div>
+  </div>
 </ion-content>

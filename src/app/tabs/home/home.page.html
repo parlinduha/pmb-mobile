@@ -13,7 +13,7 @@
   <div class="mx-1">
     <div class="flex flex-row items-center justify-between py-4 mx-1 ">
       <span class="text-xl font-normal text-blue-600 ">Informasi terbaru</span>
-      <span class="text-xs font-thin text-blue-600">Lainnya</span>
+      <span class="text-xs font-thin text-blue-600" (click)="navigateInfo()">Lainnya</span>
     </div>
     <div class="flex space-x-4 overflow-x-auto">
       <div class="flex-shrink-0 p-2 text-center rounded-md bg-sky-400">
@@ -34,19 +34,19 @@
     </div>
   </div>
   <div class="grid grid-cols-2 gap-1 mx-1 mt-4">
-    <div id="bg-card" class="flex flex-col items-center justify-center p-6 rounded-md bg-sky-400">
+    <div id="bg-card" class="flex flex-col items-center justify-center p-6 rounded-md bg-sky-400" (click)="jadwal_biaya()">
       <ion-icon name="alarm" size="large"></ion-icon>
       <span>Jadwal & Biaya</span>
     </div>
-    <div id="bg-card" class="flex flex-col items-center justify-center p-6 rounded-md bg-sky-400">
+    <div id="bg-card" class="flex flex-col items-center justify-center p-6 rounded-md bg-sky-400" (click)="prosedure()">
       <ion-icon name="newspaper" size="large"></ion-icon>
       <span>Prosedur</span>
     </div>
-    <div id="bg-card" class="flex flex-col items-center justify-center p-6 rounded-md bg-sky-400">
+    <div id="bg-card" class="flex flex-col items-center justify-center p-6 rounded-md bg-sky-400" (click)="persyaratan()">
       <ion-icon name="ticket" size="large"></ion-icon>
       <span>Persyaratan</span>
     </div>
-    <div id="bg-card" class="flex flex-col items-center justify-center p-6 rounded-md bg-sky-400">
+    <div id="bg-card" class="flex flex-col items-center justify-center p-6 rounded-md bg-sky-400" (click)="kuliah()">
       <ion-icon name="school" size="large"></ion-icon>
       <span>Perkuliahan</span>
     </div>

@@ -24,8 +24,8 @@ export class RegistrationFormStudentPage implements OnInit {
     { value: 'extension', display: 'Kelas extension' },
   ];
   genderOptions = [
-    { value: 'Laki-laki', display: 'Laki-laki' },
-    { value: 'Perempuan', display: 'Perempuan' },
+    { value: 'male', display: 'Laki-laki' },
+    { value: 'female', display: 'Perempuan' },
   ];
   religionOptions = [
     { value: 'Islam', display: 'Islam' },
@@ -81,7 +81,21 @@ export class RegistrationFormStudentPage implements OnInit {
       try {
         const data = JSON.parse(userActive);
         const email = data.email;
+        const name = data.name;
+        const religion = data.religionOption;
+        const gender = data.genderOption;
+        const birthDate = data.bornDate;
+        const mobileNumber = data.whatsappNumber;
+        const fullAddress = data.homeAddress;
+
+
         this.registrationForm.patchValue({ email: email });
+        this.registrationForm.patchValue({ fullName: name });
+         this.registrationForm.patchValue({ religion: religion});
+        this.registrationForm.patchValue({ gender: gender });
+        this.registrationForm.patchValue({ birthDate: birthDate });
+         this.registrationForm.patchValue({ mobileNumber: mobileNumber});
+        this.registrationForm.patchValue({ fullAddress: fullAddress});
       } catch (err) {
         console.error('Error parsing user data from local storage:', err);
       }

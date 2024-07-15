@@ -1,13 +1,30 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>persyaratan</ion-title>
+  <ion-toolbar class="bg-blue-600" mode="ios">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="#"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="text-white">Persyaratan</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="bg-gray-100">
   <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">persyaratan</ion-title>
+    <ion-toolbar class="bg-blue-600">
+      <ion-title size="large" class="text-white">Persyaratan</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <div class="p-4">
+    <h2 class="mb-4 text-2xl font-bold">Persyaratan Penerimaan Mahasiswa Baru</h2>
+    <ul class="pl-5 list-disc">
+      <li class="mb-2">Fotokopi Ijazah SMA/SMK/Sederajat yang telah dilegalisir</li>
+      <li class="mb-2">Fotokopi SKHUN yang telah dilegalisir</li>
+      <li class="mb-2">Pas foto berwarna ukuran 3x4 sebanyak 2 lembar</li>
+      <li class="mb-2">Fotokopi Kartu Keluarga</li>
+      <li class="mb-2">Fotokopi KTP</li>
+      <li class="mb-2">Surat Keterangan Catatan Kepolisian (SKCK)</li>
+      <li class="mb-2">Surat Keterangan Sehat dari dokter</li>
+      <li class="mb-2">Formulir pendaftaran yang telah diisi</li>
+    </ul>
+  </div>
 </ion-content>

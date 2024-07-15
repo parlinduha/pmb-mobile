@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { JsonFileService } from '../../../../service/json/json-file.service';
+import { ToastController } from '@ionic/angular';
+
+interface JadwalBiaya {
+  id: string;
+  title: string;
+  fee: string;
+}
 
 @Component({
   selector: 'app-jadwal-biaya',
@@ -6,51 +14,95 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./jadwal-biaya.page.scss'],
 })
 export class JadwalBiayaPage implements OnInit {
-
-  scheduleFees: Array<{ schedule: string, fee: string }> = [
-    { schedule: 'Teknik Informatik - Regular Malam', fee: '3,500,000 IDR' },
-    { schedule: 'Teknik Informatika - Regular Pagi', fee: '2,000,000 IDR' },
-    { schedule: 'Teknik Informatika - Extension', fee: '4,000,000 IDR' },
-     { schedule: 'Sistem Informasi - Regular Malam', fee: '3,500,000 IDR' },
-    { schedule: 'Sistem Informasi - Regular Pagi', fee: '2,000,000 IDR' },
-    { schedule: 'Sistem Informasi - Extension', fee: '4,000,000 IDR' }
-
-  ];
-
-  newSchedule: string = '';
+  scheduleFees: JadwalBiaya[] = [];
+  newTitle: string = '';
   newFee: string = '';
   editIndex: number | null = null;
-  editSchedule: string = '';
+  editTitle: string = '';
   editFee: string = '';
 
-  constructor() { }
+  constructor(private jsonFileService: JsonFileService, private toastController: ToastController) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.loadScheduleFees();
+  }
+
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000,
+      position: 'bottom'
+    });
+    toast.present();
+  }
+
+  loadScheduleFees() {
+    this.jsonFileService.getJadwal().subscribe(
+      (data: JadwalBiaya[]) => {
+        this.scheduleFees = data;
+      },
+      (error:any) => {
+        console.error('Error loading schedule fees:', error);
+        // Handle error (e.g., show a message to the user)
+      }
+    );
+  }
 
   addItem() {
-    if (this.newSchedule && this.newFee) {
-      this.scheduleFees.push({ schedule: this.newSchedule, fee: this.newFee });
-      this.newSchedule = '';
-      this.newFee = '';
+    if (this.newTitle && this.newFee) {
+      const newItem = { title: this.newTitle, fee: this.newFee };
+      this.jsonFileService.createJadwal(newItem).subscribe(
+        (data: JadwalBiaya) => {
+          this.scheduleFees.push(data);
+          this.newTitle = '';
+          this.newFee = '';
+          this.presentToast('Schedule fee added successfully.');
+        },
+        (error:any) => {
+          console.error('Error adding schedule fee:', error);
+          // Handle error (e.g., show a message to the user)
+        }
+      );
     }
   }
 
   editItem(index: number) {
     this.editIndex = index;
-    this.editSchedule = this.scheduleFees[index].schedule;
+    this.editTitle = this.scheduleFees[index].title;
     this.editFee = this.scheduleFees[index].fee;
   }
 
   updateItem() {
-    if (this.editIndex !== null && this.editSchedule && this.editFee) {
-      this.scheduleFees[this.editIndex] = { schedule: this.editSchedule, fee: this.editFee };
-      this.editIndex = null;
-      this.editSchedule = '';
-      this.editFee = '';
+    if (this.editIndex !== null && this.editTitle && this.editFee) {
+      const updatedItem = { title: this.editTitle, fee: this.editFee };
+      const id = this.scheduleFees[this.editIndex].id;
+      this.jsonFileService.updateJadwal(id, updatedItem).subscribe(
+        (data: JadwalBiaya) => {
+          this.scheduleFees[this.editIndex!] = data;
+          this.editIndex = null;
+          this.editTitle = '';
+          this.editFee = '';
+          this.presentToast('Schedule fee updated successfully.');
+        },
+        (error:any) => {
+          console.error('Error updating schedule fee:', error);
+          // Handle error (e.g., show a message to the user)
+        }
+      );
     }
   }
 
   deleteItem(index: number) {
-    this.scheduleFees.splice(index, 1);
+    const id = this.scheduleFees[index].id;
+    this.jsonFileService.deleteJadwal(id).subscribe(
+      () => {
+        this.scheduleFees.splice(index, 1);
+        this.presentToast('Schedule fee deleted successfully.');
+      },
+      (error:any) => {
+        console.error('Error deleting schedule fee:', error);
+        // Handle error (e.g., show a message to the user)
+      }
+    );
   }
 }

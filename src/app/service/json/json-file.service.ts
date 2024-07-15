@@ -7,8 +7,9 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class JsonFileService {
-  private apiUrl = 'http://localhost:3000/api/';
-  private registerUrl = 'http://127.0.0.1:3000/api/mahasiswa';
+  // private apiUrl = 'http://192.168.177.30:3000/api/';
+  private apiUrl = 'https://pmbstmikwiduri.netlify.app/api/';
+  private registerUrl = 'https://pmbstmikwiduri.netlify.app/api/maba';
 
   constructor(private http: HttpClient) {}
 
@@ -79,6 +80,27 @@ export class JsonFileService {
   getUsers(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl + 'register');
   }
+
+  // jadwal route
+ getJadwal(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl + 'jadwal');
+ }
+
+   // Tambahkan fungsi lain di bawah ini jika diperlukan
+  createJadwal(data: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl + 'jadwal', data);
+  }
+
+  updateJadwal(id: string, data: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}jadwal/${id}`, data);
+  }
+
+  deleteJadwal(id: string): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}jadwal/${id}`);
+  }
+
+
+  // end  of jadwal
 
   registerUser(user: any): Observable<any> {
     return this.http.post(this.apiUrl + 'register', user).pipe(

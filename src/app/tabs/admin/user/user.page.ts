@@ -1,7 +1,7 @@
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { StudentService } from '../../../service/student/student.service';
+import { JsonFileService } from '../../../service/json/json-file.service';
 import { ModalController } from '@ionic/angular';
 
 @Component({
@@ -15,7 +15,7 @@ export class UserPage implements OnInit {
 
   constructor(
     private modalCtrl: ModalController,
-    private studentService: StudentService,
+    private jsonFileService: JsonFileService,
     private router: Router
   ) {}
 
@@ -24,7 +24,7 @@ export class UserPage implements OnInit {
   }
 
   getStudentsData() {
-    this.studentService.getStudents().subscribe(
+    this.jsonFileService.getUsers().subscribe(
       (response: any) => {
         if (response.success) {
           console.log(response.data);

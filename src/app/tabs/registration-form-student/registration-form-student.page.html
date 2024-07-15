@@ -11,6 +11,11 @@
         <input  formControlName="email" type="email" placeholder="ex: myname@example.com"
           class="block w-full p-1 mt-1 bg-white border border-gray-300 rounded-md shadow-sm sm:text-sm">
       </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Nama Lengkap*</label>
+        <input formControlName="fullName" type="text" placeholder="Nama Lengkap"
+          class="block w-full p-1 mt-1 bg-white border border-gray-300 rounded-md shadow-sm sm:text-sm">
+      </div>
     <div>
       <label class="block text-sm font-medium text-gray-700">PRODI Pilihan I*</label>
       <select formControlName="major1"
@@ -43,24 +48,22 @@
       <select formControlName="class"
         class="block w-full py-2 pl-3 pr-10 mt-1 text-base bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
         <option value="">pilih kelas</option>
-        <option *ngFor="let class of classOptions" [value]="class.value">{{ class.display }}</option>
+        <option *ngFor="let class of classOptions" [value]="class.value" >{{ class.display }}</option>
       </select>
     </div>
 
-    <div>
-      <label class="block text-sm font-medium text-gray-700">Nama Lengkap*</label>
-      <input formControlName="fullName" type="text" placeholder="Nama Lengkap"
-        class="block w-full p-1 mt-1 bg-white border border-gray-300 rounded-md shadow-sm sm:text-sm">
-    </div>
+
 
     <div>
       <label class="block text-sm font-medium text-gray-700">Jenis Kelamin*</label>
       <select formControlName="gender"
         class="block w-full py-2 pl-3 pr-10 mt-1 text-base bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-        <option value="">pilih jenis kelasmin</option>
-        <option *ngFor="let gender of genderOptions" [value]="gender.value">{{ gender.display }}</option>
+        <option value="">pilih jenis kelamin</option>
+        <option *ngFor="let gender of genderOptions" [value]="gender.value"
+          [selected]="gender.value === registrationForm.get('gender')?.value">{{ gender.display }}</option>
       </select>
     </div>
+
 
     <div>
       <label class="block text-sm font-medium text-gray-700">Tempat Lahir*</label>
